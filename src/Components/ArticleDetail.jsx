@@ -6,34 +6,40 @@ import CommentCard from "./CommentCard";
 const ArticleDetail = () => {
   const { articleId } = useParams();
   const [article, setArticle] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingArticle, setIsLoadingArticle] = useState(false);
+  const [isLoadingComments, setIsLoadingComments] = useState(false);
   const [isError, setIsError] = useState(false);
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    setIsLoading(true);
+    setIsLoadingArticle(true);
     getArticleById(articleId)
       .then((response) => {
         setArticle(response.data);
-        setIsLoading(false);
+        setIsLoadingArticle(false);
       })
       .catch((error) => {
-        setIsLoading(false);
+        setIsLoadingArticle(false);
         setIsError(true);
       });
   }, [articleId]);
 
   useEffect(() => {
-    setIsLoading(true);
-    getCommentsByArticleId(articleId).then((response) => {
-      setComments(response.data);
-      setIsLoading(false);
-    });
+    setIsLoadingComments(true);
+    getCommentsByArticleId(articleId)
+      .then((response) => {
+        setComments(response.data);
+        setIsLoadingComments(false);
+      })
+      .catch((error) => {
+        setIsLoadingComments(false);
+        setIsError(true);
+      });
   }, [articleId]);
 
   return (
     <div className="ArticleDetail">
-      {isLoading && <p>Loading...</p>}
+      {isLoadingArticle && <p>Loading article...</p>}
       {isError && <p>Something went wrong!</p>}
 
       {article && (
@@ -53,9 +59,14 @@ const ArticleDetail = () => {
         </>
       )}
 
-      {comments && comments.length > 0 && (
+      {isLoadingComments && <p>Loading comments...</p>}
+      {!isLoadingComments && comments && comments.length === 0 && (
+        <p>No comments yet for this article.</p>
+      )}
+
+      {!isLoadingComments && comments && comments.length > 0 && (
         <>
-          <h3 className="CommentsTitle">Comments</h3>
+          <h3>Comments</h3>
           {comments.map((comment) => (
             <CommentCard comment={comment} key={comment.comment_id} />
           ))}
@@ -64,4 +75,5 @@ const ArticleDetail = () => {
     </div>
   );
 };
+
 export default ArticleDetail;
