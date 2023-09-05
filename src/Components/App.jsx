@@ -4,6 +4,7 @@ import "../Styles/App.css";
 import Header from "./Header";
 import Nav from "./Nav";
 import ArticleList from "./ArticleList";
+import ArticleDetail from "./ArticleDetail";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<ArticleList />} />
         <Route path="/Home" element={<ArticleList />} />
+        <Route path="/articles/:articleId" element={<ArticleDetail />} />
       </Routes>
     </>
   );

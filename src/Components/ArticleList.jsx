@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import ArticleCard from "./ArticleCard";
 import { getArticles } from "../assets/Requests/api";
 import axios from "axios";
@@ -9,7 +9,6 @@ const ArticleList = () => {
   useEffect(() => {
     getArticles()
       .then((response) => {
-        console.log(response, ",,,,,,,");
         setArticles(response.data);
       })
       .catch((error) => {
@@ -20,9 +19,11 @@ const ArticleList = () => {
   return (
     <div className="ArticleList">
       <h2>Articles</h2>
-      {articles.map((article) => {
-        return <ArticleCard article={article} key={article.article_id} />;
-      })}
+      <div className="center-text">
+        {articles.map((article) => (
+          <ArticleCard article={article} key={article.article_id} />
+        ))}
+      </div>
     </div>
   );
 };
