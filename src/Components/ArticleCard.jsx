@@ -1,16 +1,8 @@
 import React from "react";
 
 const ArticleCard = ({ article }) => {
-  const {
-    title,
-    topic,
-    author,
-    body,
-    created_at,
-    votes,
-    article_img_url,
-    article_id,
-  } = article;
+  const { title, topic, author, created_at, article_img_url, article_id } =
+    article;
 
   const articleDetailURL = `/articles/${article_id}`;
 

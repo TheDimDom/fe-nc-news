@@ -34,3 +34,16 @@ img {
   display: block;
   margin: 0 auto;
 }
+.CommentsTitle {
+  font-size: 3em;
+}
+
+.CommentCard {
+  display: flex;
+  color: inherit;
+  border: 0.5em solid black;
+  margin: 2em;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}

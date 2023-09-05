@@ -9,3 +9,7 @@ export const getArticles = () => {
 export const getArticleById = (article_id) => {
   return axios.get(`${API_BASE_URL}/api/articles/${article_id}`);
 };
+
+export const getCommentsByArticleId = (article_id) => {
+  return axios.get(`${API_BASE_URL}/api/articles/${article_id}/comments`);
+}
