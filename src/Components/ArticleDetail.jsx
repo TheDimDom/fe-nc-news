@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleById, getCommentsByArticleId } from "../assets/Requests/api";
 import CommentCard from "./CommentCard";
+import VoteCounter from "./VoteCounter";
 
 const ArticleDetail = () => {
   const { articleId } = useParams();
@@ -40,7 +41,7 @@ const ArticleDetail = () => {
   return (
     <div className="ArticleDetail">
       {isLoadingArticle && <p>Loading article...</p>}
-      {isError && <p>Something went wrong!</p>}
+      {isError && <p>Something went wrong while fetching article data.</p>}
 
       {article && (
         <>
@@ -55,11 +56,15 @@ const ArticleDetail = () => {
           <p>Author: {article.author}</p>
           <p>{article.body}</p>
           <p>Created_at: {article.created_at}</p>
-          <p>Votes: {article.votes}</p>
+          <VoteCounter
+            initialVotes={article.votes}
+            articleId={article.article_id}
+          />
         </>
       )}
 
       {isLoadingComments && <p>Loading comments...</p>}
+      {isError && <p>Something went wrong while fetching comments.</p>}
       {!isLoadingComments && comments && comments.length === 0 && (
         <p>No comments yet for this article.</p>
       )}
