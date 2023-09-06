@@ -10,21 +10,21 @@ const VoteCounter = ({ articleId, initialVotes }) => {
     setIsLoading(true);
     getArticleById(articleId)
       .then((response) => {
-        setCurrentVotes(response.data.article.votes);
+        setCurrentVotes(response.data.votes);
+        setIsError(false);
         setIsLoading(false);
       })
       .catch((error) => {
         setIsLoading(false);
         setIsError(true);
       });
-  }, [articleId, currentVotes]);
+  }, [articleId]);
 
   const handleVote = (voteValue) => {
     const newVotes = currentVotes + voteValue;
     setCurrentVotes(newVotes);
 
-    const requestBody = { inc_votes: voteValue };
-    patchArticleVotes(articleId, requestBody)
+    patchArticleVotes(articleId, voteValue)
       .then(() => {
         setIsError(false);
       })
