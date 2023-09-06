@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { getArticleById, getCommentsByArticleId } from "../assets/Requests/api";
 import CommentCard from "./CommentCard";
 import VoteCounter from "./VoteCounter";
+import NewComment from "./NewComment";
 
 const ArticleDetail = () => {
   const { articleId } = useParams();
@@ -72,6 +73,10 @@ const ArticleDetail = () => {
       {!isLoadingComments && comments && comments.length > 0 && (
         <>
           <h3>Comments</h3>
+          <NewComment
+            article_id={article.article_id}
+            setComments={setComments}
+          />
           {comments.map((comment) => (
             <CommentCard comment={comment} key={comment.comment_id} />
           ))}
