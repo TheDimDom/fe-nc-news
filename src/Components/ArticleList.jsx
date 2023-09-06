@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ArticleCard from "./ArticleCard";
 import { getArticles } from "../assets/Requests/api";
-import axios from "axios";
 
 const ArticleList = () => {
   const [articles, setArticles] = useState([]);
