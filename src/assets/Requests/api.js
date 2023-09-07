@@ -15,5 +15,14 @@ export const getCommentsByArticleId = (article_id) => {
 };
 
 export const patchArticleVotes = (article_id, votes) => {
-  return axios.patch(`${API_BASE_URL}/api/articles/${article_id}`, { inc_votes: votes });
+  return axios.patch(`${API_BASE_URL}/api/articles/${article_id}`, {
+    inc_votes: votes,
+  });
+};
+
+export const postAComment = (article_id, username, body) => {
+  return axios.post(`${API_BASE_URL}/api/articles/${article_id}/comments`, {
+    username,
+    body,
+  });
 };
