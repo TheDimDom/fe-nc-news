@@ -1,19 +1,16 @@
+import React from "react";
 import { Link } from "react-router-dom";
+import TopicList from "./TopicList";
 
 function Nav() {
-  const options = ["Home"];
-
   return (
     <nav>
       <ul>
-        {options.map((option) => {
-          return (
-            <li key={option}>
-              <Link to={`/${option}`}>{option}</Link>
-            </li>
-          );
-        })}
+        <li>
+          <Link to="/">Home</Link>
+        </li>
       </ul>
+      <TopicList />
     </nav>
   );
 }
