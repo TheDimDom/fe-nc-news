@@ -26,3 +26,11 @@ export const postAComment = (article_id, username, body) => {
     body,
   });
 };
+
+export const getTopics = () => {
+  return axios.get(`${API_BASE_URL}/api/topics`);
+};
+
+export const getArticlesByTopic = (topic) => {
+  return axios.get(`${API_BASE_URL}/api/articles?topic=${topic}`);
+};
