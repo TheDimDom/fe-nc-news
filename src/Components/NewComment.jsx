@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { postAComment } from "../assets/Requests/api";
 
-const NewComment = ({ article_id, setComments }) => {
+const NewComment = ({ article_id, setComments, comments }) => {
   const [comment, setComment] = useState("");
   const [username, setUsername] = useState("jessjelly");
 
@@ -11,9 +11,21 @@ const NewComment = ({ article_id, setComments }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setComments((prevState) => {
+      return [
+        {
+          body: comment,
+          votes: 0,
+          author: "jessjelly",
+          created_at: new Date().toISOString(),
+        },
+        ...prevState,
+      ];
+    });
+    setComment('');
     postAComment(article_id, username, comment).then((newComment) => {
       setComments((currComments) => {
-        return [newComment, ...currComments];
+        return [...currComments];
       });
     });
   };

@@ -18,11 +18,11 @@ const ArticleList = () => {
   return (
     <div className="ArticleList">
       <h2>Articles</h2>
-      <div className="center-text">
-        {articles.map((article) => (
-          <ArticleCard article={article} key={article.article_id} />
-        ))}
-      </div>
+      {articles.map((article) => (
+        <div key={article.article_id} className="center-text">
+          <ArticleCard article={article} />
+        </div>
+      ))}
     </div>
   );
 };

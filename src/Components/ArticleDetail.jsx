@@ -66,19 +66,23 @@ const ArticleDetail = () => {
 
       {isLoadingComments && <p>Loading comments...</p>}
       {isError && <p>Something went wrong while fetching comments.</p>}
-      {!isLoadingComments && comments && comments.length === 0 && (
+      {!isLoadingComments && comments && comments.length === 0 ? (
         <p>No comments yet for this article.</p>
-      )}
-
-      {!isLoadingComments && comments && comments.length > 0 && (
+      ) : (
         <>
           <h3>Comments</h3>
-          <NewComment
-            article_id={article.article_id}
-            setComments={setComments}
-          />
-          {comments.map((comment) => (
-            <CommentCard comment={comment} key={comment.comment_id} />
+          {article && (
+            <NewComment
+              comments={comments}
+              article_id={article.article_id || 0}
+              setComments={setComments}
+            />
+          )}
+
+          {comments.map((comment, index) => (
+            <div key={`${comment.comment_id} foo ${index}`}>
+              <CommentCard comment={comment} />
+            </div>
           ))}
         </>
       )}
