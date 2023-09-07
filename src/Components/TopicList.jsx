@@ -24,7 +24,7 @@ const TopicList = () => {
     getArticlesByTopic(topic)
       .then((response) => {
         setArticles(response.data.rows);
-        navigate(`/topics/${topic}`)
+        navigate(`/topics/${topic}`);
       })
       .catch((error) => {
         console.error("Error fetching articles:", error);

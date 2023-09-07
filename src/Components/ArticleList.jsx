@@ -7,9 +7,10 @@ const ArticleList = () => {
   const [articles, setArticles] = useState([]);
   const [validTopics, setValidTopics] = useState([]);
   const { topicSlug } = useParams();
-  const filteredArticlesByTopic = validTopics.includes(topicSlug)
-    ? articles.filter((article) => article.topic === topicSlug)
-    : [];
+  const isValidTopic = validTopics.includes(topicSlug);
+  const filteredArticlesByTopic = articles.filter(
+    (article) => article.topic === topicSlug
+  );
 
   useEffect(() => {
     getTopics().then((response) => {
@@ -27,7 +28,7 @@ const ArticleList = () => {
   return (
     <div className="ArticleList">
       <h2>Articles</h2>
-      {topicSlug
+      {isValidTopic
         ? filteredArticlesByTopic.map((article) => (
             <div key={article.article_id} className="center-text">
               <ArticleCard article={article} />
