@@ -3,24 +3,19 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { getArticlesByTopic } from "../assets/Requests/api";
 
-const ArticleList = ({
-  articles,
-  setArticles,
-  isTopicsPage = false,
-}) => {
+const ArticleList = ({ articles, setArticles, sort_by, order }) => {
   const { topicSlug } = useParams();
 
   useEffect(() => {
-    isTopicsPage &&
-      getArticlesByTopic(topicSlug)
-        .then((response) => {
-          setArticles(response.data.rows);
-        })
-        .catch((error) => {
-          console.error("Error");
-        });
-  }, [topicSlug]);
-
+    getArticlesByTopic(topicSlug, sort_by, order)
+      .then((response) => {
+        setArticles(response.data.rows);
+      })
+      .catch((error) => {
+        console.error("Error", error);
+      });
+  }, [topicSlug, sort_by, order]);
+  console.log(sort_by);
   return (
     <div className="ArticleList">
       <h2>Articles</h2>

@@ -31,6 +31,8 @@ export const getTopics = () => {
   return axios.get(`${API_BASE_URL}/api/topics`);
 };
 
-export const getArticlesByTopic = (topic) => {
-  return axios.get(`${API_BASE_URL}/api/articles?topic=${topic}`);
+export const getArticlesByTopic = (topic, sort_by, order) => {
+  return axios.get(
+    `${API_BASE_URL}/api/articles?topic=${topic}&sort_by=${sort_by}&order=${order}`
+  );
 };

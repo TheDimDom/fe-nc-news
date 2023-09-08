@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { getTopics, getArticlesByTopic } from "../assets/Requests/api";
+import { useNavigate } from "react-router-dom";
+
 
 const TopicList = ({ topics }) => {
   const navigate = useNavigate();
