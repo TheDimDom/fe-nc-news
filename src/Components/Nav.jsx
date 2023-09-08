@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import TopicList from "./TopicList";
 
 function Nav() {
   return (
@@ -10,7 +9,6 @@ function Nav() {
           <Link to="/">Home</Link>
         </li>
       </ul>
-      <TopicList />
     </nav>
   );
 }
