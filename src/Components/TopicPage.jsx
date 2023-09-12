@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getArticlesByTopic } from "../assets/Requests/api";
+import { getArticles } from "../api";
 
 function TopicPage() {
   const { topicSlug } = useParams();
@@ -11,7 +11,7 @@ function TopicPage() {
   useEffect(() => {
     setIsLoading(true);
     setError(null);
-    getArticlesByTopic(topicSlug)
+    getArticles(topicSlug)
       .then((response) => {
         setArticles(response.data.rows)
         setIsLoading(false);

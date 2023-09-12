@@ -2,10 +2,6 @@ import axios from "axios";
 
 const API_BASE_URL = `https://nc-news-bbq4.onrender.com`;
 
-export const getArticles = () => {
-  return axios.get(`${API_BASE_URL}/api/articles`);
-};
-
 export const getArticleById = (article_id) => {
   return axios.get(`${API_BASE_URL}/api/articles/${article_id}`);
 };
@@ -31,8 +27,10 @@ export const getTopics = () => {
   return axios.get(`${API_BASE_URL}/api/topics`);
 };
 
-export const getArticlesByTopic = (topic, sort_by, order) => {
+export const getArticles = (topic, sort_by, order) => {
   return axios.get(
-    `${API_BASE_URL}/api/articles?topic=${topic}&sort_by=${sort_by}&order=${order}`
+    `${API_BASE_URL}/api/articles?topic=${topic ? topic : ""}&sort_by=${
+      sort_by ? sort_by : "created_at"
+    }&order=${order ? order : "desc"}`
   );
 };
