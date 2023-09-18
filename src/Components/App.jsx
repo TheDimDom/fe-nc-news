@@ -18,7 +18,6 @@ function App() {
       <CssBaseline />
       <Header />
       <Nav />
-
       <Routes>
         <Route path="*" element={<ErrorPage />} />
         <Route path="/" element={<Articles />} />

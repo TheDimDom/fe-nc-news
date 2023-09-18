@@ -1,14 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { IconButton } from "@mui/material";
+import HomeIcon from "@mui/icons-material/Home";
 
 function Nav() {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/");
+  };
   return (
     <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-      </ul>
+      <IconButton onClick={handleClick}>
+        <HomeIcon />
+      </IconButton>
     </nav>
   );
 }
