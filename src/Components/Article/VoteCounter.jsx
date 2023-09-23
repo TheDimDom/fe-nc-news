@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { patchArticleVotes, getArticleById } from "../api/api.js";
+import { patchArticleVotes, getArticleById } from "../../api/api.js";
 
 const VoteCounter = ({ articleId, initialVotes }) => {
   const [currentVotes, setCurrentVotes] = useState(initialVotes);

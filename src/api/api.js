@@ -23,6 +23,10 @@ export const postAComment = (article_id, username, body) => {
   });
 };
 
+export const deleteComment = (comment_id) => {
+  return axios.delete(`${API_BASE_URL}/api/comments/${comment_id}`);
+};
+
 export const getTopics = () => {
   return axios.get(`${API_BASE_URL}/api/topics`);
 };

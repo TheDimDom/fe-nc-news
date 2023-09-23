@@ -1,9 +1,10 @@
-import { Grid } from "@mui/material";
+import { Grid, Box } from "@mui/material";
 import { useEffect, useState, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
 import { getArticles, getTopics } from "../../api/api";
 import ArticleFilters from "./ArticleFilters";
 import ArticleCard from "./ArticleCard";
+import Nav from "../Shared/Nav";
 
 export default function Articles() {
   const [articles, setArticles] = useState([]);
@@ -30,10 +31,7 @@ export default function Articles() {
   useEffect(() => {
     getArticles(topic, sort_by, order)
       .then((response) => {
-        if (!topic) {
-          setArticles(response.data);
-        }
-        setArticles(response.data.rows);
+        setArticles(response.data);
       })
       .catch((error) => {
         console.error("Error fetching categories", error);
@@ -42,17 +40,25 @@ export default function Articles() {
       setValidTopics(response.data);
     });
   }, [searchParams]);
+
   return (
-    <Grid container spacing={4}>
-      <Grid item xs={12}>
-        <ArticleFilters setQuery={setQuery} topics={validTopics} />
+    <>
+      <Grid container spacing={1} direction="row">
+        <Grid item xs={12} md={12}>
+          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Nav />
+            <ArticleFilters setQuery={setQuery} topics={validTopics} />
+          </Box>
+        </Grid>
       </Grid>
-      {articles &&
-        articles.map((article) => (
-          <Grid key={article.article_id} item xs={12} sm={12} md={3}>
-            <ArticleCard article={article} />
-          </Grid>
-        ))}
-    </Grid>
+      <Grid container spacing={2}>
+        {articles &&
+          articles.map((article) => (
+            <Grid key={article.article_id} item xs={12} sm={12} md={3}>
+              <ArticleCard article={article} />
+            </Grid>
+          ))}
+      </Grid>
+    </>
   );
 }

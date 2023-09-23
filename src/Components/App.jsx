@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import Header from "./Header";
-import Nav from "./Nav";
+import Header from "./Shared/Header";
+import Nav from "./Shared/Nav";
 import Articles from "./Articles";
-import ArticleDetail from "./Articles/ArticleDetail";
-import TopicList from "./TopicList";
-import ErrorPage from "./ErrorPage";
+import ArticleDetail from "./Article";
+// import TopicList from "./TopicList";
+import ErrorPage from "./Shared/ErrorPage";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import darkTheme from "../darkTheme";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -17,7 +17,6 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <Header />
-      <Nav />
       <Routes>
         <Route path="*" element={<ErrorPage />} />
         <Route path="/" element={<Articles />} />
