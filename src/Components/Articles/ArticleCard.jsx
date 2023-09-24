@@ -18,10 +18,10 @@ const ArticleCard = ({ article }) => {
   };
 
   return (
-    <Card>
+    <Card sx={{ height: "100%", display: "flex", flexDirection: "column", boxShadow: "2px 3px 6px rgba(0, 0, 0, 0.1)"}}>
       <CardActionArea onClick={handleClick}>
         <CardMedia
-          sx={{ height: 360 }}
+          sx={{ height: 350, overflow: "hidden" }}
           image={article_img_url}
           title={`Image for ${title}`}
         />
@@ -30,10 +30,7 @@ const ArticleCard = ({ article }) => {
             {title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {topic}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {author}
+            Author: {author}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {format(new Date(created_at), "dd/MM/yyyy")}

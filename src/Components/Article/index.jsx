@@ -66,7 +66,13 @@ const ArticleDetail = () => {
 
   return (
     <>
-      <Nav />
+      <Grid container spacing={1} direction="row">
+        <Grid item xs={12} md={12}>
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <Nav />
+          </Box>
+        </Grid>
+      </Grid>
       <Paper
         sx={{
           mx: 6,
@@ -97,8 +103,8 @@ const ArticleDetail = () => {
                   <Box
                     component="img"
                     sx={{
-                      height: "50rem",
-                      width: "70rem",
+                      height: "40rem",
+                      width: "60rem",
                     }}
                     alt={`${article.title}-image`}
                     src={article.article_img_url}
@@ -106,18 +112,27 @@ const ArticleDetail = () => {
                 )}
               </Grid>
 
-              <Grid item xs={12}>
-                <Typography>Topic: {article.topic}</Typography>
-                <Typography>Author: {article.author}</Typography>
-                <Typography>{article.body}</Typography>
-                <Typography>
-                  Created_at:{" "}
-                  {format(new Date(article.created_at), "dd/MM/yyyy")}
-                </Typography>
-                <VoteCounter
-                  initialVotes={article.votes}
-                  articleId={article.article_id}
-                />
+              <Grid
+                item
+                xs={12}
+                container
+                alignItems="center"
+                justifyContent="center"
+                py={3}
+                style={{ textAlign: "center" }}
+              >
+                <Box>
+                  <Typography>{article.body}</Typography>
+                  <Typography>Author: {article.author}</Typography>
+                  <Typography>
+                    Created_at:{" "}
+                    {format(new Date(article.created_at), "dd/MM/yyyy")}
+                  </Typography>
+                  <VoteCounter
+                    initialVotes={article.votes}
+                    articleId={article.article_id}
+                  />
+                </Box>
               </Grid>
             </>
           )}

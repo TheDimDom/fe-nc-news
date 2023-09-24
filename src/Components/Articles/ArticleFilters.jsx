@@ -51,8 +51,8 @@ export default function ArticleFilters({ setQuery, topics }) {
         }}
       >
         <Box p={2}>
-          <Stack direction="column" spacing={2}>
-            <Stack direction="row" spacing={2} alignItems="center">
+          <Stack direction="column" spacing={1}>
+            <Stack direction="row" spacing={5} alignItems="center">
               <InputLabel id="topic">Topic</InputLabel>
               <Select
                 sx={{ width: "10rem" }}
@@ -69,7 +69,7 @@ export default function ArticleFilters({ setQuery, topics }) {
               </Select>
             </Stack>
 
-            <Stack direction="row" spacing={2} alignItems="center">
+            <Stack direction="row" spacing={3} alignItems="center">
               <InputLabel id="sort-by">Sort By</InputLabel>
               <Select
                 sx={{ width: "10rem" }}
@@ -84,7 +84,7 @@ export default function ArticleFilters({ setQuery, topics }) {
               </Select>
             </Stack>
 
-            <Stack direction="row" spacing={2} alignItems="center">
+            <Stack direction="row" spacing={1.5} alignItems="center">
               <InputLabel id="order">Order By</InputLabel>
               <Select
                 sx={{ width: "10rem" }}
