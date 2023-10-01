@@ -18,7 +18,7 @@ const ArticleCard = ({ article }) => {
   };
 
   return (
-    <Card sx={{ height: "100%", display: "flex", flexDirection: "column", boxShadow: "2px 3px 6px rgba(0, 0, 0, 0.1)"}}>
+    <Card sx={{ height: "100%", display: "flex", flexDirection: "column", boxShadow: "10px 10px 6px rgba(0, 0, 0, 0.1)"}}>
       <CardActionArea onClick={handleClick}>
         <CardMedia
           sx={{ height: 350, overflow: "hidden" }}

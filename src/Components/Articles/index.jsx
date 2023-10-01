@@ -79,6 +79,7 @@ export default function Articles() {
             page={page}
             onChange={handlePageChange}
             color="primary"
+
           />
         </Stack>
       </Box>

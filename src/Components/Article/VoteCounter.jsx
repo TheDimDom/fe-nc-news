@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { Box, Button, CircularProgress, Typography } from "@mui/material";
 import { patchArticleVotes, getArticleById } from "../../api/api.js";
 
 const VoteCounter = ({ articleId, initialVotes }) => {
@@ -14,7 +15,7 @@ const VoteCounter = ({ articleId, initialVotes }) => {
         setIsError(false);
         setIsLoading(false);
       })
-      .catch((error) => {
+      .catch(() => {
         setIsLoading(false);
         setIsError(true);
       });
@@ -35,17 +36,37 @@ const VoteCounter = ({ articleId, initialVotes }) => {
   };
 
   return (
-    <div className="Votes">
-      {isLoading && <p>Loading...</p>}
-      {isError && <p>Error updating vote. Please try again.</p>}
+    <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
+      {isLoading && <CircularProgress size={20} />}
+      {isError && (
+        <Typography variant="body2" color="error">
+          Error updating vote. Please try again.
+        </Typography>
+      )}
       {!isLoading && (
         <>
-          <p>Votes: {currentVotes}</p>
-          <button onClick={() => handleVote(1)}>Upvote</button>
-          <button onClick={() => handleVote(-1)}>Downvote</button>
+          <Typography variant="body2">Vote on the article: {currentVotes}</Typography>
+          <Button
+            variant="outlined"
+            color="primary"
+            size="small"
+            onClick={() => handleVote(1)}
+            sx={{ ml: 1 }} 
+          >
+            Upvote
+          </Button>
+          <Button
+            variant="outlined"
+            color="secondary"
+            size="small"
+            onClick={() => handleVote(-1)}
+            sx={{ ml: 1 }}
+          >
+            Downvote
+          </Button>
         </>
       )}
-    </div>
+    </Box>
   );
 };
 

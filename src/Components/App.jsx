@@ -13,8 +13,8 @@ function App() {
   const [validTopics, setValidTopics] = useState([]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <ToggleColorMode>
+    <ThemeProvider theme={theme} >
+      <ToggleColorMode >
         <CssBaseline />
         <Header />
         <Routes>

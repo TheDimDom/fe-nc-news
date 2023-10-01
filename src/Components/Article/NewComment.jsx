@@ -1,4 +1,11 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import {
+  Paper,
+  Box,
+  Button,
+  TextareaAutosize,
+  Typography,
+} from "@mui/material";
 import { postAComment } from "../../api/api";
 
 const NewComment = ({ article_id, setComments, comments }) => {
@@ -55,21 +62,39 @@ const NewComment = ({ article_id, setComments, comments }) => {
   };
 
   return (
-    <div>
-      {isCommentPosted && <p>Comment posted successfully!</p>}
-      {isError && <p>{errorMessage}</p>}
+    <Paper
+      sx={{
+        p: 2,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      {isError && (
+        <Typography variant="body1" color="error">
+          {errorMessage}
+        </Typography>
+      )}
       <form onSubmit={handleSubmit}>
-        <label htmlFor="comment">Comment:</label>
-        <textarea
-          id="comment"
-          value={comment}
-          onChange={(event) => {
-            setComment(event.target.value);
-          }}
-        ></textarea>
-        <button type="submit">Submit</button>
+          <TextareaAutosize
+            minRows={3}
+            placeholder="Enter your comment..."
+            value={comment}
+            onChange={(event) => {
+              setComment(event.target.value);
+            }}
+            style={{ width: "100%" }}
+          />
+        {isCommentPosted && (
+          <Typography variant="body1" color="success">
+            Comment posted successfully!
+          </Typography>
+        )}
+        <Button variant="contained" type="submit" color="primary">
+          Submit
+        </Button>
       </form>
-    </div>
+    </Paper>
   );
 };
 
